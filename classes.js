@@ -1,3 +1,4 @@
+
 class Grass {
     constructor(x, y, index) {
         this.x = x;
@@ -8,12 +9,12 @@ class Grass {
         matrix[this.y][this.x] = this.index;
         this.directions = [
             [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
+            [this.x    , this.y - 1],
             [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
+            [this.x - 1, this.y    ],
+            [this.x + 1, this.y    ],
             [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
+            [this.x    , this.y + 1],
             [this.x + 1, this.y + 1]
         ];
 
@@ -45,6 +46,7 @@ class Grass {
         }
     }
 }
+
 
 class Xotaker {
     constructor(x, y, index) {
@@ -239,5 +241,3 @@ class Gishatich {
         }
     }
 }
-
-
