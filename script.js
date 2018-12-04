@@ -4,9 +4,9 @@ function genMatrix(w, h) {
         matrix[y] = [];
         for(var x = 0; x < w; x++) {
             var r = random(100);
-            if     (r < 20) r = 0;
-            else if(r < 65) r = 1;
-            else if(r < 90) r = 2;
+            if     (r < 30) r = 0;
+            else if(r < 75) r = 1;
+            else if(r < 80) r = 2;
             else if(r < 100)r = 3;
             matrix[y][x] = r;
         }

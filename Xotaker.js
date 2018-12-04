@@ -1,25 +1,18 @@
-class Xotaker {
+class Xotaker extends livingCreature{
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
+        super(x, y, index);
         this.energy = Math.round(Math.random() * 8);
         this.multiply = Math.round(Math.random() * 8);
         this.speed = 8;
         matrix[this.y][this.x] = this.index;
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
-
     }
+
+    stanalNorKordinatner() {
+        return super.stanalNorKordinatner();
+    }
+
     yntrelVandak(ch) {
+        this.stanalNorKordinatner();
         var found = [];
         for (var i in this.directions) {
             var x = this.directions[i][0];
@@ -32,18 +25,7 @@ class Xotaker {
         }
         return found;
     }
-    stanalNorKordinatner() {
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
-    }
+    
 
     sharjvel() {
         var vand = random(this.yntrelVandak(0));
@@ -51,7 +33,7 @@ class Xotaker {
             this.energy--;
             matrix[this.y][this.x] = 0;
             this.x = vand[0]; this.y = vand[1];
-            matrix[this.y][this.x] = 2;
+            matrix[this.y][this.x] = this.index;
             this.multiply = 0;
         }
     }
