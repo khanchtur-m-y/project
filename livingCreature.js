@@ -1,8 +1,9 @@
 class livingCreature {
-    constructor(x, y, index){
+    constructor(x, y, index) {
         this.x = x;
         this.y = y;
         this.index = index;
+        matrix[this.y][this.x] = this.index;
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -14,7 +15,7 @@ class livingCreature {
             [this.x + 1, this.y + 1]
         ];
     }
-    
+
     yntrelVandak(ch) {
         var found = [];
         for (var i in this.directions) {
@@ -40,5 +41,16 @@ class livingCreature {
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
         ];
+    }
+
+    sharjvel() {
+        var vand = random(this.yntrelVandak(0));
+        if (vand) {
+            this.energy--;
+            matrix[this.y][this.x] = 0;
+            this.x = vand[0]; this.y = vand[1];
+            matrix[this.y][this.x] = this.index;
+            this.multiply = 0;
+        }
     }
 }

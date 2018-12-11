@@ -1,66 +1,30 @@
-class Gishatich {
+class Gishatich extends livingCreature {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
-        this.energy = Math.round(Math.random() * 16);
-        this.speed = 24;
-        this.multiply = Math.round(Math.random() * 16);
-        matrix[this.y][this.x] = this.index;
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+        super(x, y, index);
 
+        this.energy = Math.round(Math.random() * 16);
+        this.multiply = Math.round(Math.random() * 16);
+        this.speed = 24;
+
+        //matrix[this.y][this.x] = this.index;
     }
     yntrelVandak(ch) {
         this.stanalNorKordinatner();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == ch) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        return super.yntrelVandak(ch);
     }
     stanalNorKordinatner() {
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+        return super.stanalNorKordinatner();
     }
 
     sharjvel() {
-        var vand = random(this.yntrelVandak(0));
-        if (vand && this.multiply >= this.speed / 2) {
-            this.energy--;
-            matrix[this.y][this.x] = 0;
-            this.x = vand[0]; this.y = vand[1];
-            matrix[this.y][this.x] = this.index;
-        }
+       return super.sharjvel();
     }
 
     utel() {
         this.energy--;
         var vand = random(this.yntrelVandak(2));
         if (vand && this.multiply >= this.speed / 2) {
-            this.energy += this.speed/2;
+            this.energy += this.speed / 2;
             matrix[this.y][this.x] = 0;
             this.x = vand[0]; this.y = vand[1];
             matrix[this.y][this.x] = 3;

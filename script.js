@@ -3,10 +3,10 @@ function genMatrix(w, h) {
     for(var y = 0; y < h; y++) {
         matrix[y] = [];
         for(var x = 0; x < w; x++) {
-            var r = random(100);
-            if     (r < 30) r = 0;
+            var r = Math.round(Math.random() * 100);
+            if     (r < 50) r = 0;
             else if(r < 75) r = 1;
-            else if(r < 80) r = 2;
+            else if(r < 90) r = 2;
             else if(r < 100)r = 3;
             matrix[y][x] = r;
         }
@@ -24,7 +24,7 @@ function setup() {
     matrix = genMatrix(w, h);
     createCanvas(side * w, side * h);
     background("#acacac");
-    frameRate(5);
+    frameRate(4);
     for(var y in matrix) {
         for(var x in matrix[y]) {
             if(matrix[y][x] == 1) {
@@ -54,7 +54,7 @@ function draw() {
                 fill("yellow");
             }
             else if(matrix[y][x] == 3) {
-                fill("red");
+                fill("blue");
             }
             rect(x * side, y * side, side, side);
         }
