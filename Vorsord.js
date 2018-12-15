@@ -1,4 +1,6 @@
-class Vorsord extends livingCreature {
+var livingCreature = require("./livingCreature");
+
+module.exports = class Vorsord extends livingCreature {
     constructor(x, y, index) {
         super(x, y, index);
     }
@@ -42,4 +44,4 @@ class Vorsord extends livingCreature {
         }
 
     }
-}
+};

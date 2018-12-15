@@ -1,4 +1,6 @@
-class Gishatich extends livingCreature {
+var livingCreature = require("./livingCreature");
+
+module.exports = class Gishatich extends livingCreature {
     constructor(x, y, index) {
         super(x, y, index);
 
@@ -22,7 +24,10 @@ class Gishatich extends livingCreature {
 
     utel() {
         this.energy--;
-        var vand = random(this.yntrelVandak(2));
+        
+        var arr = this.yntrelVandak(2);
+        var vand = arr[Math.floor(Math.random() * arr.length)];
+
         if (vand && this.multiply >= this.speed / 2) {
             this.energy += this.speed / 2;
             matrix[this.y][this.x] = 0;
@@ -38,7 +43,9 @@ class Gishatich extends livingCreature {
     }
 
     bazmanal() {
-        var vand = random(this.yntrelVandak(0));
+        var arr = this.yntrelVandak(0);
+        var vand = arr[Math.floor(Math.random() * arr.length)];
+        
         if (vand && this.energy >= this.speed) {
             this.energy = 1;
             var newgishatich = new Gishatich(vand[0], vand[1], 3);
@@ -56,4 +63,4 @@ class Gishatich extends livingCreature {
             }
         }
     }
-}
+};

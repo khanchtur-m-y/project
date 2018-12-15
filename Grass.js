@@ -1,16 +1,20 @@
-class Grass extends livingCreature{
+var livingCreature = require("./livingCreature");
+
+module.exports = class Grass extends livingCreature {
     constructor(x, y, index) {
         super(x, y, index);
         this.multiply = Math.round(Math.random() * 8);
         this.speed = 8;
     }
     yntrelVandak(ch) {
-       return super.yntrelVandak(ch);
+        return super.yntrelVandak(ch);
     }
 
     mul() {
         this.multiply++;
-        this.direction = random(this.yntrelVandak(0));
+        var arr = this.yntrelVandak(0);
+        this.direction = arr[Math.floor(Math.random() * arr.length)];
+        
         if (this.multiply >= this.speed && this.direction) {
             var newGrass = new Grass(this.direction[0], this.direction[1], this.index);
             newGrass.parentX = this.x;
@@ -20,4 +24,4 @@ class Grass extends livingCreature{
             this.multiply = 0;
         }
     }
-}
+};

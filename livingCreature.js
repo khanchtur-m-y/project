@@ -1,4 +1,4 @@
-class livingCreature {
+module.exports = class livingCreature {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;
@@ -44,7 +44,9 @@ class livingCreature {
     }
 
     sharjvel() {
-        var vand = random(this.yntrelVandak(0));
+        var arr = this.yntrelVandak(0);
+        var vand = arr[Math.floor(Math.random() * arr.length)];
+
         if (vand) {
             this.energy--;
             matrix[this.y][this.x] = 0;
@@ -53,4 +55,4 @@ class livingCreature {
             this.multiply = 0;
         }
     }
-}
+};
