@@ -55,7 +55,7 @@ module.exports = class Xotaker extends livingCreature {
         }
     }
 
-    mahanal() {
+    mahanal(tariq) {
         if (this.energy <= -(this.speed / 2)) {
             matrix[this.y][this.x] = 0;
             for (var i in xotakerArr) {
@@ -63,6 +63,9 @@ module.exports = class Xotaker extends livingCreature {
                     xotakerArr.splice(i, 1);
                 }
             }
+        }
+        else {
+            this.age++;
         }
     }
 };

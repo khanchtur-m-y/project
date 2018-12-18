@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-//var livingCreature = require("./livingCreature");
+var fs = require("fs");
 var Grass = require("./Grass");
 var Xotaker = require("./Xotaker");
 var Gishatich = require("./Gishatich");
@@ -18,11 +18,20 @@ console.log("server is running");
 
 var w = 30;
 var h = 30;
-var side = 24;
 grassArr = [];
 xotakerArr = [];
 gishatichArr = [];
 matrix = [];
+var dayCount = 5;
+
+var eldestGrass = 0;
+var eldestXotaker = 0;
+var eldestGishatich = 0;
+var amenaBklikXotaker = 0;
+var amenaBklikGishatich = 0;
+var strongestVorsord = 0;
+
+fs.appendFileSync("stats.json", "here are some stats");
 
 for (var y = 0; y < h; y++) {
     matrix[y] = [];
@@ -54,18 +63,26 @@ io.on('connection', function (socket) {
     setInterval(function () {
         for (var i in grassArr) {
             grassArr[i].mul();
+            console.log(grassArr[i].age);
         }
 
         for (var i in xotakerArr) {
             xotakerArr[i].bazmanal();
             xotakerArr[i].utel();
             xotakerArr[i].mahanal();
+            eldestXotaker = (eldestXotaker > xotakerArr[i].age) ? eldestXotaker : xotakerArr[i].age;
         }
 
         for (var i in gishatichArr) {
             gishatichArr[i].bazmanal();
             gishatichArr[i].utel();
             gishatichArr[i].mahanal();
+        }
+
+        if(dayCount-- <= 0){
+            fs.appendFileSync("stats.json", "\n===========================\n")
+            fs.appendFileSync("stats.json", JSON.stringify(eldestGrass));
+            dayCount = 5;
         }
 
         io.sockets.emit("display", matrix);

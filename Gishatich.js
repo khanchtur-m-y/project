@@ -19,12 +19,12 @@ module.exports = class Gishatich extends livingCreature {
     }
 
     sharjvel() {
-       return super.sharjvel();
+        return super.sharjvel();
     }
 
     utel() {
         this.energy--;
-        
+
         var arr = this.yntrelVandak(2);
         var vand = arr[Math.floor(Math.random() * arr.length)];
 
@@ -45,7 +45,7 @@ module.exports = class Gishatich extends livingCreature {
     bazmanal() {
         var arr = this.yntrelVandak(0);
         var vand = arr[Math.floor(Math.random() * arr.length)];
-        
+
         if (vand && this.energy >= this.speed) {
             this.energy = 1;
             var newgishatich = new Gishatich(vand[0], vand[1], 3);
@@ -61,6 +61,9 @@ module.exports = class Gishatich extends livingCreature {
                     gishatichArr.splice(i, 1);
                 }
             }
+        }
+        else {
+            this.age++;
         }
     }
 };

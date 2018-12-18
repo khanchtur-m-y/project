@@ -11,6 +11,7 @@ module.exports = class Grass extends livingCreature {
     }
 
     mul() {
+        this.age++;
         this.multiply++;
         var arr = this.yntrelVandak(0);
         this.direction = arr[Math.floor(Math.random() * arr.length)];
