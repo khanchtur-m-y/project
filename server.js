@@ -8,6 +8,7 @@ var Grass = require("./Grass");
 var Xotaker = require("./Xotaker");
 var Gishatich = require("./Gishatich");
 var Vorsord = require("./Vorsord");
+var Meteor = require("./Meteor");
 
 app.use(express.static("."));
 app.get('/', function (req, res) {
@@ -24,17 +25,19 @@ xotakerArr = [];
 gishatichArr = [];
 vorsordArr = [];
 matrix = [];
-var dayCount = 5;
+var dayCount = 1;
+weather = ["sum", "aut", "win", "spr"];
+currentWeather = 0;
 stats = {
 	"EldestGrass": 0,
 	"EldestXotaker": 0,
 	"EldestGishatich": 0,
 	"AmenaBklikXotaker": 0,
 	"AmenaBklikGishatich": 0,
-	"AmenaUjexVorsord": 0
+    "AmenaUjexVorsord": 0,
+    "QaniXotKeranXotakernery": 0,
+    "QaniXotakerKeranGishatichnery": 0,
 }
-
-fs.writeFileSync("stats.json", JSON.stringify(stats));
 
 for (var y = 0; y < h; y++) {
     matrix[y] = [];
@@ -42,13 +45,14 @@ for (var y = 0; y < h; y++) {
         var r = Math.floor(Math.random() * 100);
         if (r < 60) r = 0;
         else if (r < 80) r = 1;
-        else if (r < 90) r = 2;
-        else if (r < 97) r = 3;
+        else if (r < 91) r = 2;
+        else if (r < 98) r = 3;
 		else if (r < 100) r = 4;
         matrix[y][x] = r;
     }
 }
 
+//var met = new Meteor();
 
 for (var y in matrix) {
     for (var x in matrix[y]) {
@@ -88,11 +92,16 @@ io.on('connection', function (socket) {
             vorsordArr[i].vorsal(i);
         }
 
-        if(dayCount-- < 0){
-            fs.writeFileSync("stats.json", JSON.stringify(stats));
-            dayCount = 5;
+        
+        dayCount++;
+        if(dayCount % 5 == 0){
+            fs.writeFileSync("stats.json", JSON.stringify(stats, null, 3));
+        }
+        if(dayCount % 25 == 0){
+            dayCount = 0;
+            currentWeather = (currentWeather == 3) ? 0 : currentWeather++;
         }
 
         io.sockets.emit("display", matrix);
-    }, 400);
+    }, 200);
 });

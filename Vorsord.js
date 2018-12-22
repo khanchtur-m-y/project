@@ -30,6 +30,7 @@ module.exports = class Vorsord extends livingCreature {
             for (var i in xotakerArr) {
                 if (xotakerArr[i].x == this.x && xotakerArr[i].y == this.y) {
                     xotakerArr.splice(i, 1);
+                    break;
                 }
             }
         }
@@ -48,6 +49,7 @@ module.exports = class Vorsord extends livingCreature {
                 for (var i in gishatichArr) {
                     if (gishatichArr[i].x == this.x && gishatichArr[i].y == this.y) {
                         gishatichArr.splice(i, 1);
+                        break;
                     }
                 }
             }
