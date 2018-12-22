@@ -7,8 +7,6 @@ module.exports = class Gishatich extends livingCreature {
         this.energy = Math.round(Math.random() * 16);
         this.multiply = Math.round(Math.random() * 16);
         this.speed = 24;
-
-        //matrix[this.y][this.x] = this.index;
     }
     yntrelVandak(ch) {
         this.stanalNorKordinatner();
@@ -53,17 +51,14 @@ module.exports = class Gishatich extends livingCreature {
         }
     }
 
-    mahanal() {
-        if (this.energy <= -(this.speed / 2)) {
-            matrix[this.y][this.x] = 0;
-            for (var i in gishatichArr) {
-                if (gishatichArr[i].x == this.x && gishatichArr[i].y == this.y) {
-                    gishatichArr.splice(i, 1);
-                }
-            }
+    mahanal(i) {
+        if (this.energy <= 0) {
+			matrix[this.y][this.x] = 0;      
+			gishatichArr.splice(i, 1);
         }
         else {
             this.age++;
+			stats.EldestGishatich = (stats.EldestGishatich > this.age) ? stats.EldestGishatich : this.age;
         }
     }
 };

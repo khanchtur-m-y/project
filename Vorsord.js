@@ -3,6 +3,7 @@ var livingCreature = require("./livingCreature");
 module.exports = class Vorsord extends livingCreature {
     constructor(x, y, index) {
         super(x, y, index);
+		this.kills = 0;
     }
     yntrelVandak(ch) {
         return super.yntrelVandak(ch);
@@ -16,10 +17,14 @@ module.exports = class Vorsord extends livingCreature {
         return super.sharjvel();
     }
 
-    vorsal() {
-        var vand = random(this.yntrelVandak(2));
+    vorsal(i) {
+        var arr = this.yntrelVandak(2);
+        var vand = arr[Math.floor(Math.random() * arr.length)]; 
         if (vand) {
-            matrix[this.y][this.x] = 0;
+            this.kills++;
+			stats.AmenaUjexVorsord = (stats.AmenaUjexVorsord > this.kills) ? stats.AmenaUjexVorsord : this.kills;
+			
+			matrix[this.y][this.x] = 0;
             this.x = vand[0]; this.y = vand[1];
             matrix[this.y][this.x] = this.index;
             for (var i in xotakerArr) {
@@ -30,9 +35,14 @@ module.exports = class Vorsord extends livingCreature {
         }
 
         else {
-            var vand = random(this.yntrelVandak(3));
-            if (vand) {
-                matrix[this.y][this.x] = 0;
+			var luck = Math.random();
+            var arr = this.yntrelVandak(3);
+			var vand = arr[Math.floor(Math.random() * arr.length)];
+            if (vand && luck > 0.1) {
+				this.kills++;
+				stats.AmenaUjexVorsord = (stats.AmenaUjexVorsord > this.kills) ? stats.AmenaUjexVorsord : this.kills;
+                
+				matrix[this.y][this.x] = 0;
                 this.x = vand[0]; this.y = vand[1];
                 matrix[this.y][this.x] = this.index;
                 for (var i in gishatichArr) {
@@ -41,7 +51,13 @@ module.exports = class Vorsord extends livingCreature {
                     }
                 }
             }
+			else if(vand && luck < 0.1){
+				matrix[this.y][this.x] = 0;
+				vorsordArr.splice(i, 1);
+			}
+			
+			else
+				this.sharjvel();
         }
-
     }
 };

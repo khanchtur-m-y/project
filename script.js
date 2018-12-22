@@ -23,6 +23,9 @@ socket.on("display", function (matrix) {
             else if (matrix[y][x] == 3) {
                 fill("blue");
             }
+			else if (matrix[y][x] == 4) {
+                fill("olive");
+            }
             rect(x * side, y * side, side, side);
         }
     }

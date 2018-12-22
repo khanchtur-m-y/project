@@ -7,7 +7,6 @@ module.exports = class Xotaker extends livingCreature {
         this.energy = Math.round(Math.random() * 8);
         this.multiply = Math.round(Math.random() * 8);
         this.speed = 8;
-        //matrix[this.y][this.x] = this.index;
     }
 
     stanalNorKordinatner() {
@@ -40,8 +39,8 @@ module.exports = class Xotaker extends livingCreature {
                 }
             }
         }
-        else this.sharjvel();
-
+        else 
+			this.sharjvel();
     }
 
     bazmanal() {
@@ -55,17 +54,14 @@ module.exports = class Xotaker extends livingCreature {
         }
     }
 
-    mahanal(tariq) {
-        if (this.energy <= -(this.speed / 2)) {
-            matrix[this.y][this.x] = 0;
-            for (var i in xotakerArr) {
-                if (xotakerArr[i].x == this.x && xotakerArr[i].y == this.y) {
-                    xotakerArr.splice(i, 1);
-                }
-            }
+    mahanal(i) {
+        if (this.energy <= 0) {
+            matrix[this.y][this.x] = 0; 
+            xotakerArr.splice(i, 1);			
         }
         else {
             this.age++;
+			stats.EldestXotaker = (stats.EldestXotaker > this.age) ? stats.EldestXotaker : this.age;
         }
     }
 };
