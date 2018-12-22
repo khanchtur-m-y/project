@@ -27,7 +27,7 @@ vorsordArr = [];
 matrix = [];
 var dayCount = 1;
 weather = ["sum", "aut", "win", "spr"];
-currentWeather = 0;
+currentWeather = 2;
 stats = {
 	"EldestGrass": 0,
 	"EldestXotaker": 0,
@@ -99,7 +99,11 @@ io.on('connection', function (socket) {
         }
         if(dayCount % 25 == 0){
             dayCount = 0;
-            currentWeather = (currentWeather == 3) ? 0 : currentWeather++;
+            currentWeather++;
+            if(currentWeather == 4){
+                currentWeather = 0;
+            }
+            io.sockets.emit("weather", currentWeather);
         }
 
         io.sockets.emit("display", matrix);
