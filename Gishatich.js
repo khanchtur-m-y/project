@@ -26,8 +26,12 @@ module.exports = class Gishatich extends livingCreature {
         var arr = this.yntrelVandak(2);
         var vand = arr[Math.floor(Math.random() * arr.length)];
 
-        if (vand && this.multiply >= this.speed / 2) {
-            this.energy += this.speed / 2;
+        if (vand && this.multiply >= 6) {
+			this.kills++;
+			stats.Amenabklik_Gishatich = (stats.Amenabklik_Gishatich > this.kills) ? stats.Amenabklik_Gishatich : this.kills;
+            stats.Qani_Xotaker_Keran_Gishatichnery++;
+			
+			this.energy += this.speed / 2;
             matrix[this.y][this.x] = 0;
             this.x = vand[0]; this.y = vand[1];
             matrix[this.y][this.x] = 3;
@@ -59,7 +63,7 @@ module.exports = class Gishatich extends livingCreature {
         }
         else {
             this.age++;
-			stats.EldestGishatich = (stats.EldestGishatich > this.age) ? stats.EldestGishatich : this.age;
+			stats.Eldest_Gishatich = (stats.Eldest_Gishatich > this.age) ? stats.Eldest_Gishatich : this.age;
         }
     }
 };

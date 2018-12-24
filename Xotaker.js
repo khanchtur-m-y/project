@@ -3,7 +3,6 @@ var livingCreature = require("./livingCreature");
 module.exports = class Xotaker extends livingCreature {
     constructor(x, y, index) {
         super(x, y, index);
-
         this.energy = Math.round(Math.random() * 8);
         this.multiply = Math.round(Math.random() * 8);
         this.speed = 8;
@@ -29,6 +28,10 @@ module.exports = class Xotaker extends livingCreature {
         var arr = this.yntrelVandak(1);
         var vand = arr[Math.floor(Math.random() * arr.length)];
         if (vand && this.multiply >= this.speed / 4) {
+			this.kills++;
+			stats.Amenabklik_Xotaker = (stats.Amenabklik_Xotaker > this.kills) ? stats.Amenabklik_Xotaker : this.kills;
+			stats.Qani_Xot_Keran_Xotakernery++;
+			
             this.energy += this.speed;
             matrix[this.y][this.x] = 0;
             this.x = vand[0]; this.y = vand[1];
@@ -62,7 +65,7 @@ module.exports = class Xotaker extends livingCreature {
         }
         else {
             this.age++;
-			stats.EldestXotaker = (stats.EldestXotaker > this.age) ? stats.EldestXotaker : this.age;
+			stats.Eldest_Xotaker = (stats.Eldest_Xotaker > this.age) ? stats.Eldest_Xotaker : this.age;
         }
     }
 };

@@ -3,7 +3,6 @@ var livingCreature = require("./livingCreature");
 module.exports = class Vorsord extends livingCreature {
     constructor(x, y, index) {
         super(x, y, index);
-		this.kills = 0;
     }
     yntrelVandak(ch) {
         return super.yntrelVandak(ch);
@@ -22,7 +21,7 @@ module.exports = class Vorsord extends livingCreature {
         var vand = arr[Math.floor(Math.random() * arr.length)]; 
         if (vand) {
             this.kills++;
-			stats.AmenaUjexVorsord = (stats.AmenaUjexVorsord > this.kills) ? stats.AmenaUjexVorsord : this.kills;
+			stats.Qani_Kendani_Spanec_Amenaujex_Vorsordy = (stats.Qani_Kendani_Spanec_Amenaujex_Vorsordy > this.kills) ? stats.Qani_Kendani_Spanec_Amenaujex_Vorsordy : this.kills;
 			
 			matrix[this.y][this.x] = 0;
             this.x = vand[0]; this.y = vand[1];
@@ -41,7 +40,7 @@ module.exports = class Vorsord extends livingCreature {
 			var vand = arr[Math.floor(Math.random() * arr.length)];
             if (vand && luck > 0.1) {
 				this.kills++;
-				stats.AmenaUjexVorsord = (stats.AmenaUjexVorsord > this.kills) ? stats.AmenaUjexVorsord : this.kills;
+				stats.Qani_Kendani_Spanec_Amenaujex_Vorsordy = (stats.Qani_Kendani_Spanec_Amenaujex_Vorsordy > this.kills) ? stats.Qani_Kendani_Spanec_Amenaujex_Vorsordy : this.kills;
                 
 				matrix[this.y][this.x] = 0;
                 this.x = vand[0]; this.y = vand[1];

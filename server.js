@@ -25,34 +25,43 @@ xotakerArr = [];
 gishatichArr = [];
 vorsordArr = [];
 matrix = [];
-var dayCount = 1;
-weather = ["sum", "aut", "win", "spr"];
-currentWeather = 2;
+var dayCount = 0;
+currentWeather = 0;
 stats = {
-	"EldestGrass": 0,
-	"EldestXotaker": 0,
-	"EldestGishatich": 0,
-	"AmenaBklikXotaker": 0,
-	"AmenaBklikGishatich": 0,
-    "AmenaUjexVorsord": 0,
-    "QaniXotKeranXotakernery": 0,
-    "QaniXotakerKeranGishatichnery": 0,
+	"Eldest_Grass": 0,
+	"Eldest_Xotaker": 0,
+	"Eldest_Gishatich": 0,
+	"Amenabklik_Xotaker": 0,
+	"Amenabklik_Gishatich": 0,
+    "Qani_Kendani_Spanec_Amenaujex_Vorsordy": 0,
+    "Qani_Xot_Keran_Xotakernery": 0,
+    "Qani_Xotaker_Keran_Gishatichnery": 0,
+	"Qani_Xotaker_Mahacav_Meteoritic":0,
+	"Qani_Gishatich_Mahacav_Meteoritic":0,
+	"Qani_Meteorit_Ynkav": 0
 }
 
 for (var y = 0; y < h; y++) {
     matrix[y] = [];
     for (var x = 0; x < w; x++) {
-        var r = Math.floor(Math.random() * 100);
-        if (r < 60) r = 0;
-        else if (r < 80) r = 1;
-        else if (r < 91) r = 2;
-        else if (r < 98) r = 3;
+        var r = Math.random();
+        /*
+		if (r < 60) r = 0;
+        else if (r < 70) r = 1;
+        else if (r < 85) r = 2;
+        else if (r < 91) r = 3;
 		else if (r < 100) r = 4;
-        matrix[y][x] = r;
+        */
+		if (r < 0.01) r = 4;
+        else if (r < 0.08) r = 3;
+        else if (r < 0.3) r = 2;
+        else if (r < 0.6) r = 1;
+		else r = 0;
+		matrix[y][x] = r;
     }
 }
 
-//var met = new Meteor();
+var met = new Meteor();
 
 for (var y in matrix) {
     for (var x in matrix[y]) {
@@ -91,13 +100,15 @@ io.on('connection', function (socket) {
 		for (var i in vorsordArr) {
             vorsordArr[i].vorsal(i);
         }
-
-        
+		
+		met.act();
+		
         dayCount++;
-        if(dayCount % 5 == 0){
+        if(dayCount++ % 5 == 0){
             fs.writeFileSync("stats.json", JSON.stringify(stats, null, 3));
         }
-        if(dayCount % 25 == 0){
+		
+        if(dayCount % 20 == 0){
             dayCount = 0;
             currentWeather++;
             if(currentWeather == 4){

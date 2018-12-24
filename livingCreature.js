@@ -4,6 +4,7 @@ module.exports = class livingCreature {
         this.y = y;
         this.index = index;
         this.age = 0;
+		this.kills = 0;
         matrix[this.y][this.x] = this.index;
         this.directions = [
             [this.x - 1, this.y - 1],
