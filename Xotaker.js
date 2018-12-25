@@ -51,6 +51,22 @@ module.exports = class Xotaker extends livingCreature {
         var arr = this.yntrelVandak(0);
         var vand = arr[Math.floor(Math.random() * arr.length)];
 
+		switch(currentWeather){
+			case 0:
+				this.speed = 8;
+				break;
+				
+			case 1:
+				this.speed = 10;
+				
+			case 2:
+				this.speed = 6;
+				break;
+
+			case 3:
+				this.speed = 4;	
+				break;
+		}
         if (vand && this.energy >= this.speed) {
             this.energy = 1;
             var newxotaker = new Xotaker(vand[0], vand[1], 2);

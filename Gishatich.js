@@ -48,7 +48,19 @@ module.exports = class Gishatich extends livingCreature {
     bazmanal() {
         var arr = this.yntrelVandak(0);
         var vand = arr[Math.floor(Math.random() * arr.length)];
+		
+		switch(currentWeather){
+			case 2:
+				this.speed = 22;
+			break;
 
+			case 3:
+				this.speed = 20;	
+			break;
+			
+			default:
+				this.speed = 24;
+		}
         if (vand && this.energy >= this.speed) {
             this.energy = 1;
             var newgishatich = new Gishatich(vand[0], vand[1], 3);

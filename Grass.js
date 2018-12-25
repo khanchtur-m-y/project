@@ -16,6 +16,23 @@ module.exports = class Grass extends livingCreature {
         this.multiply++;
         var arr = this.yntrelVandak(0);
         this.direction = arr[Math.floor(Math.random() * arr.length)];
+		
+		switch(currentWeather){
+			case 0:
+				this.speed = 8;
+				break;
+				
+			case 1:
+				this.speed = 10;
+				
+			case 2:
+				this.speed = 6;
+				break;
+
+			case 3:
+				this.speed = 4;	
+				break;
+		}
         
         if (this.multiply >= this.speed && this.direction) {
             var newGrass = new Grass(this.direction[0], this.direction[1], this.index);

@@ -17,7 +17,8 @@ module.exports = class Vorsord extends livingCreature {
     }
 
     vorsal(i) {
-        var arr = this.yntrelVandak(2);
+        if(currentWeather != 3){
+			var arr = this.yntrelVandak(2);
         var vand = arr[Math.floor(Math.random() * arr.length)]; 
         if (vand) {
             this.kills++;
@@ -60,5 +61,6 @@ module.exports = class Vorsord extends livingCreature {
 			else
 				this.sharjvel();
         }
+		}
     }
 };

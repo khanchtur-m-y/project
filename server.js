@@ -26,7 +26,7 @@ gishatichArr = [];
 vorsordArr = [];
 matrix = [];
 var dayCount = 0;
-currentWeather = 0;
+currentWeather = 0;//spring, summer, autumn, winter
 stats = {
 	"Eldest_Grass": 0,
 	"Eldest_Xotaker": 0,

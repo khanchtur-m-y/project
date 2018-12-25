@@ -55,7 +55,7 @@ module.exports = class Meteor {
 	disappear() {
 		this.speed--;
 		if (this.speed < 1 && this.area.length != 0) {
-			this.speed = 0;
+			this.speed = 2;
 			var n = Math.floor(Math.random() * this.area.length);
 			matrix[this.area[n][0]][this.area[n][1]] = 0;
 			this.area.splice(n, 1);
